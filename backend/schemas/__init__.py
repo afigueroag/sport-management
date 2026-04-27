@@ -4,6 +4,7 @@ from .user import UserCreate, UserLogin, UserResponse, UserUpdate
 from .student import StudentCreate, StudentResponse, StudentUpdate
 from .auth import TokenResponse, RefreshTokenRequest
 from .class_schema import ClassCreate, ClassResponse, ClassUpdate
+from .enrollment_schema import EnrollmentCreate, EnrollmentResponse, EnrollmentUpdate
 
 __all__ = [
     "UserCreate",
@@ -18,4 +19,7 @@ __all__ = [
     "ClassCreate",
     "ClassResponse",
     "ClassUpdate",
+    "EnrollmentCreate",
+    "EnrollmentResponse",
+    "EnrollmentUpdate",
 ]
