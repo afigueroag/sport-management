@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse - SportAcademia</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages/auth.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-box">
+      <div class="auth-header">
+        <h1>🏋️ SportAcademia</h1>
+        <p>Crear Cuenta</p>
+      </div>
+
+      <form class="auth-form">
+        <div class="input-group">
+          <label class="input-label required">Nombre Completo</label>
+          <input type="text" class="input" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label required">Email</label>
+          <input type="email" class="input" placeholder="tu@email.com" required>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label required">Contraseña</label>
+          <input type="password" class="input" placeholder="••••••••" required>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label required">Confirmar Contraseña</label>
+          <input type="password" class="input" placeholder="••••••••" required>
+        </div>
+
+        <div class="checkbox">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Acepto los <a href="#">términos y condiciones</a></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: var(--spacing-6);">Crear Cuenta</button>
+
+        <div class="auth-divider">O</div>
+
+        <button type="button" class="btn btn-secondary btn-block">Registrarse con Google</button>
+      </form>
+
+      <div class="auth-footer">
+        <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Placeholder - Implementar en Phase 2
+    console.log('Register page - Phase 2 implementation');
+  </script>
+</body>
+</html>

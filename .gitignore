@@ -1,0 +1,50 @@
+# Entorno
+.env
+.env.local
+.env.*.local
+.venv
+venv/
+env/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+*.sublime-project
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporal
+*.tmp
+*.temp
+.cache/

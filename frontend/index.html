@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gestiona tu academia de deportes de forma simple y eficiente. Dojos, gimnasios, pilates, acuática y más.">
+  <title>SportAcademia - Gestión de Academias de Deportes</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages/landing.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <a href="#" class="navbar-brand">
+          <span style="font-size: 24px;">🏋️</span>
+          <span>SportAcademia</span>
+        </a>
+
+        <ul class="navbar-nav">
+          <li class="navbar-nav-item"><a href="#features">Características</a></li>
+          <li class="navbar-nav-item"><a href="#sports">Deportes</a></li>
+          <li class="navbar-nav-item"><a href="#pricing">Precios</a></li>
+        </ul>
+
+        <div class="navbar-right">
+          <a href="login.html" class="btn btn-secondary btn-sm">Iniciar Sesión</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Registrarse</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HÉROE -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Gestiona tu Academia de Deportes sin Complicaciones</h1>
+        <p>Controla estudiantes, horarios, asistencia, membresías y pagos. Todo en un solo lugar, diseñado para academias de deportes.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="scrollToSection('pricing')">Comenzar Prueba Gratis</button>
+          <button class="btn btn-outline" onclick="document.getElementById('demo-modal').classList.add('active')">Ver Demostración</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARACTERÍSTICAS -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="features-header">
+        <h2>Características Poderosas</h2>
+        <p>Todas las herramientas que necesitas para administrar tu academia profesionalmente</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Gestión de Estudiantes</h3>
+          <p>Registra, edita y administra perfiles de estudiantes con información de contacto, membresías e historial de asistencia.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Horarios Flexible</h3>
+          <p>Crea clases, asigna instructores, establece horarios y controla la capacidad de cada sesión.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✓</div>
+          <h3>Asistencia Inteligente</h3>
+          <p>Marca asistencia rápidamente por clase y genera reportes detallados de asistencia por estudiante.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>Pagos Seguros</h3>
+          <p>Integración con Stripe para recibir pagos en línea. Soporta tarjetas de crédito y múltiples monedas.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3>Seguridad Garantizada</h3>
+          <p>Autenticación segura con JWT, encriptación de datos y cumplimiento de estándares de seguridad.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Reportes Detallados</h3>
+          <p>Obtén insights sobre ingresos, asistencia, membresías activas y tendencias de tu academia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPORTES -->
+  <section class="sports" id="sports">
+    <div class="container">
+      <div class="sports-header">
+        <h2>Multimodalidad Deportiva</h2>
+        <p>Soporta cualquier tipo de academia de deportes</p>
+      </div>
+
+      <div class="sports-grid">
+        <div class="sport-item">
+          <div class="sport-icon">🥋</div>
+          <h4>Dojos</h4>
+          <p>Artes marciales, karate, taekwondo</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">🏋️</div>
+          <h4>Gimnasios</h4>
+          <p>Entrenamiento de fuerza y fitness</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">🧘</div>
+          <h4>Pilates</h4>
+          <p>Clases de pilates y yoga</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">🏊</div>
+          <h4>Acuática</h4>
+          <p>Natación y deportes acuáticos</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">⚽</div>
+          <h4>Fútbol</h4>
+          <p>Escuelas de fútbol y entrenamiento</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">🎾</div>
+          <h4>Tenis</h4>
+          <p>Entrenamiento de tenis</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">🏃</div>
+          <h4>Running</h4>
+          <p>Grupos de corredores</p>
+        </div>
+
+        <div class="sport-item">
+          <div class="sport-icon">🩰</div>
+          <h4>Danza</h4>
+          <p>Clases de danza y ballet</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <h2>Planes de Precios Simples</h2>
+        <p>Elige el plan que mejor se adapte a tu academia</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan Básico -->
+        <div class="pricing-card">
+          <h3 class="pricing-name">Básico</h3>
+
+          <div class="pricing-price">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount">29</span>
+            <span class="pricing-period">/mes</span>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: var(--spacing-6);">Hasta 100 estudiantes</p>
+
+          <ul class="pricing-features">
+            <li>Gestión de hasta 100 estudiantes</li>
+            <li>Hasta 10 clases</li>
+            <li>Control de asistencia básico</li>
+            <li>Soporte por email</li>
+          </ul>
+
+          <button class="btn btn-secondary" onclick="startFreeTrial()">Comenzar Prueba</button>
+        </div>
+
+        <!-- Plan Profesional -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Más Popular</div>
+          <h3 class="pricing-name">Profesional</h3>
+
+          <div class="pricing-price">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount">79</span>
+            <span class="pricing-period">/mes</span>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: var(--spacing-6);">Hasta 500 estudiantes</p>
+
+          <ul class="pricing-features">
+            <li>Gestión de hasta 500 estudiantes</li>
+            <li>Clases ilimitadas</li>
+            <li>Control de asistencia avanzado</li>
+            <li>Integración con Stripe</li>
+            <li>Reportes detallados</li>
+            <li>Soporte prioritario</li>
+            <li>Múltiples instructores</li>
+          </ul>
+
+          <button class="btn btn-primary" onclick="startFreeTrial()">Comenzar Prueba</button>
+        </div>
+
+        <!-- Plan Empresarial -->
+        <div class="pricing-card">
+          <h3 class="pricing-name">Empresarial</h3>
+
+          <div class="pricing-price">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount">199</span>
+            <span class="pricing-period">/mes</span>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: var(--spacing-6);">Académias grandes</p>
+
+          <ul class="pricing-features">
+            <li>Estudiantes ilimitados</li>
+            <li>Clases ilimitadas</li>
+            <li>Múltiples ubicaciones</li>
+            <li>API personalizada</li>
+            <li>Integraciones personalizadas</li>
+            <li>Soporte dedicado 24/7</li>
+            <li>Formación personalizada</li>
+          </ul>
+
+          <button class="btn btn-secondary" onclick="contactSales()">Contactar Ventas</button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: var(--spacing-10);">
+        <p style="color: var(--text-secondary);">
+          ⭐ Todos los planes incluyen <strong>30 días de prueba gratuita</strong>. Sin necesidad de tarjeta de crédito.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta">
+    <div class="container">
+      <h2>¿Listo para Profesionalizar tu Academia?</h2>
+      <p>Únete a cientos de academias que confían en SportAcademia para crecer</p>
+      <button class="btn btn-primary" style="background-color: var(--color-accent);" onclick="startFreeTrial()">
+        Comienza tu Prueba Gratuita Ahora
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Producto</h3>
+          <ul>
+            <li><a href="#features">Características</a></li>
+            <li><a href="#pricing">Precios</a></li>
+            <li><a href="#">Documentación</a></li>
+            <li><a href="#">Roadmap</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Empresa</h3>
+          <ul>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Carrera</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Términos</a></li>
+            <li><a href="#">Seguridad</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href="mailto:info@sportacademia.com">info@sportacademia.com</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 SportAcademia. Todos los derechos reservados.</p>
+        <p>Hecho con ❤️ para academias de deportes</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE DEMOSTRACIÓN -->
+  <div id="demo-modal" class="modal">
+    <div class="modal-content" style="width: 90%; max-width: 500px;">
+      <div class="modal-header">
+        <h2>Solicitar Demostración</h2>
+        <button class="modal-close" onclick="this.closest('.modal').classList.remove('active')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: var(--spacing-4);">Nuestro equipo te mostrará cómo SportAcademia puede ayudarte a crecer.</p>
+
+        <div class="input-group">
+          <label class="input-label required">Nombre</label>
+          <input type="text" class="input" placeholder="Tu nombre completo">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label required">Email</label>
+          <input type="email" class="input" placeholder="tu@email.com">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label required">Nombre de Academia</label>
+          <input type="text" class="input" placeholder="Mi Academia de Deportes">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label required">Teléfono</label>
+          <input type="tel" class="input" placeholder="+52 (555) 123-4567">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="this.closest('.modal').classList.remove('active')">Cancelar</button>
+        <button class="btn btn-primary" onclick="requestDemo()">Solicitar Demostración</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="js/landing.js"></script>
+</body>
+</html>
