@@ -6,6 +6,7 @@ from .auth import TokenResponse, RefreshTokenRequest
 from .class_schema import ClassCreate, ClassResponse, ClassUpdate
 from .enrollment_schema import EnrollmentCreate, EnrollmentResponse, EnrollmentUpdate
 from .attendance_schema import AttendanceCreate, AttendanceResponse, AttendanceUpdate
+from .class_session_schema import ClassSessionCreate, ClassSessionResponse, ClassSessionUpdate
 
 __all__ = [
     "UserCreate",
@@ -26,4 +27,7 @@ __all__ = [
     "AttendanceCreate",
     "AttendanceResponse",
     "AttendanceUpdate",
+    "ClassSessionCreate",
+    "ClassSessionResponse",
+    "ClassSessionUpdate",
 ]
