@@ -10,7 +10,7 @@ from config import settings
 from database import init_db, close_db
 
 # Importar routers
-from routers import auth, students, classes, enrollments
+from routers import auth, students, classes, enrollments, attendance
 
 
 @asynccontextmanager
@@ -76,6 +76,9 @@ app.include_router(classes.router, prefix="/api/classes", tags=["Classes"])
 
 # Incluir router de inscripciones
 app.include_router(enrollments.router, prefix="/api/enrollments", tags=["Enrollments"])
+
+# Incluir router de asistencia
+app.include_router(attendance.router, prefix="/api/attendance", tags=["Attendance"])
 
 # Próximos routers (Phase 5+)
 # app.include_router(payments.router, prefix="/api/payments", tags=["Payments"])
