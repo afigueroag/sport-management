@@ -1,80 +1,8 @@
 /* ============================================
-   DASHBOARD - Página de control principal
+   DASHBOARD - Página de control principal con vistas por rol
    ============================================ */
 
 import * as auth from '../auth.js';
-
-/**
- * Obtiene las características por rol
- */
-function getFeaturesByRole(role) {
-  const features = {
-    admin: [
-      'Ver KPIs y métricas (ingresos, estudiantes activos)',
-      'Gestionar estudiantes',
-      'Gestionar clases y horarios',
-      'Ver reportes de asistencia',
-      'Gestionar pagos y membresías',
-      'Enviar recordatorios de pago',
-    ],
-    instructor: [
-      'Ver mis clases asignadas',
-      'Marcar asistencia por clase',
-      'Ver historial de asistencia',
-      'Añadir notas sobre estudiantes',
-      'Solicitar cambios de horario',
-    ],
-    student: [
-      'Ver mis clases inscritas',
-      'Inscribirme en nuevas clases',
-      'Ver mi estado de pago',
-      'Ver historial de asistencia',
-      'Gestionar mi membresía',
-    ],
-    receptionist: [
-      'Inscribir nuevos estudiantes',
-      'Registrar pagos manuales',
-      'Ver lista de estudiantes',
-      'Enviar recordatorios de pago',
-    ],
-  };
-
-  return features[role] || [];
-}
-
-/**
- * Cargar datos del usuario actual
- */
-async function loadUserData() {
-  try {
-    const user = auth.getCurrentUser();
-
-    if (!user) {
-      // Si no hay usuario pero está autenticado, intenta obtenerlo del servidor
-      await auth.fetchCurrentUser();
-      location.reload();
-      return;
-    }
-
-    // Mostrar información del usuario
-    document.getElementById('user-name').textContent = user.full_name || user.email;
-    document.getElementById('user-email').textContent = user.email;
-
-    // Mostrar rol
-    const roleElement = document.getElementById('user-role');
-    roleElement.textContent = formatRole(user.role);
-    roleElement.className = `badge badge-${getBadgeColor(user.role)}`;
-
-    // Cargar características por rol
-    loadFeaturesByRole(user.role);
-
-    console.log('✓ User data loaded:', user);
-  } catch (error) {
-    console.error('Error loading user data:', error);
-    document.getElementById('user-name').textContent = 'Error';
-    document.getElementById('user-email').textContent = 'Error al cargar datos';
-  }
-}
 
 /**
  * Formatea el nombre del rol
@@ -92,38 +20,138 @@ function formatRole(role) {
 /**
  * Retorna el color del badge según el rol
  */
-function getBadgeColor(role) {
-  const colors = {
-    admin: 'primary',
-    instructor: 'success',
-    student: 'secondary',
-    receptionist: 'warning',
+function getRoleBadgeClass(role) {
+  const classes = {
+    admin: 'badge-role admin',
+    instructor: 'badge-role instructor',
+    student: 'badge-role student',
+    receptionist: 'badge-role receptionist',
   };
-  return colors[role] || 'secondary';
+  return classes[role] || 'badge-role';
 }
 
 /**
- * Carga las características según el rol
+ * Muestra el dashboard apropiado según el rol
  */
-function loadFeaturesByRole(role) {
-  const features = getFeaturesByRole(role);
-  const container = document.getElementById('features-by-role');
+function showDashboardByRole(role) {
+  // Ocultar todos los dashboards
+  document.getElementById('admin-dashboard')?.style.setProperty('display', 'none');
+  document.getElementById('instructor-dashboard')?.style.setProperty('display', 'none');
+  document.getElementById('student-dashboard')?.style.setProperty('display', 'none');
 
-  if (features.length === 0) {
-    container.innerHTML = '<p style="color: var(--text-tertiary);">No hay características disponibles.</p>';
-    return;
+  // Mostrar el dashboard correspondiente
+  const dashboardId = `${role}-dashboard`;
+  const dashboard = document.getElementById(dashboardId);
+
+  if (dashboard) {
+    dashboard.style.setProperty('display', 'block');
+  } else {
+    console.warn(`Dashboard no encontrado para rol: ${role}`);
   }
+}
 
-  const html = `
-    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-4);">
-      Como <strong>${formatRole(role)}</strong>, tendrás acceso a:
-    </p>
-    <ul style="list-style-type: disc; padding-left: var(--spacing-6);">
-      ${features.map((feature) => `<li style="margin-bottom: var(--spacing-2);">${feature}</li>`).join('')}
-    </ul>
-  `;
+/**
+ * Carga datos del usuario actual y muestra el dashboard apropiado
+ */
+async function loadUserData() {
+  try {
+    const user = auth.getCurrentUser();
 
-  container.innerHTML = html;
+    if (!user) {
+      // Si no hay usuario pero está autenticado, intenta obtenerlo del servidor
+      await auth.fetchCurrentUser();
+      location.reload();
+      return;
+    }
+
+    // Mostrar información del usuario en navbar
+    document.getElementById('user-name').textContent = user.full_name || user.email;
+
+    const roleBadgeElement = document.getElementById('user-role-badge');
+    roleBadgeElement.textContent = formatRole(user.role);
+    roleBadgeElement.className = getRoleBadgeClass(user.role);
+
+    // Mostrar el dashboard apropiado
+    showDashboardByRole(user.role);
+
+    // Cargar datos específicos del rol (si es necesario)
+    loadRoleSpecificData(user.role);
+
+    console.log('✓ User data loaded:', user);
+  } catch (error) {
+    console.error('Error loading user data:', error);
+    document.getElementById('user-name').textContent = 'Error';
+  }
+}
+
+/**
+ * Carga datos específicos según el rol
+ */
+async function loadRoleSpecificData(role) {
+  switch (role) {
+    case 'admin':
+      await loadAdminData();
+      break;
+    case 'instructor':
+      await loadInstructorData();
+      break;
+    case 'student':
+      await loadStudentData();
+      break;
+    case 'receptionist':
+      // Receptionist dashboard coming in Phase 3+
+      break;
+  }
+}
+
+/**
+ * Carga datos para dashboard admin
+ */
+async function loadAdminData() {
+  try {
+    // TODO: En Phase 5, conectar con API para traer datos reales
+    // Por ahora, usamos datos mock
+
+    // Los datos ya están en el HTML como placeholders
+    console.log('✓ Admin data loaded (mock)');
+  } catch (error) {
+    console.error('Error loading admin data:', error);
+  }
+}
+
+/**
+ * Carga datos para dashboard instructor
+ */
+async function loadInstructorData() {
+  try {
+    // TODO: En Phase 5, conectar con API para traer:
+    // - Clases asignadas para hoy
+    // - Horario del instructor
+    // - Estudiantes por clase
+
+    // Por ahora, usamos datos mock en el HTML
+    console.log('✓ Instructor data loaded (mock)');
+  } catch (error) {
+    console.error('Error loading instructor data:', error);
+  }
+}
+
+/**
+ * Carga datos para dashboard estudiante
+ */
+async function loadStudentData() {
+  try {
+    // TODO: En Phase 5, conectar con API para traer:
+    // - Membresía actual del estudiante
+    // - Clases inscritas
+    // - Clases disponibles
+    // - Historial de pagos
+
+    // Por ahora, usamos datos mock en el HTML
+    console.log('✓ Student data loaded (mock)');
+  } catch (error) {
+    console.error('Error loading student data:', error);
+  }
 }
 
 /**
@@ -131,6 +159,20 @@ function loadFeaturesByRole(role) {
  */
 function handleLogout() {
   auth.logout();
+}
+
+/**
+ * Inicializa event listeners del dashboard
+ */
+function initializeEventListeners() {
+  // Logout button
+  document.getElementById('logout-btn').addEventListener('click', handleLogout);
+
+  // TODO: En Phase 5, agregar listeners para:
+  // - Botones "Marcar Asistencia"
+  // - Botones "Inscribirme" en clases
+  // - Botones "Recordatorio" de pago
+  // - Etc.
 }
 
 /**
@@ -143,9 +185,7 @@ function init() {
   }
 
   loadUserData();
-
-  // Event listeners
-  document.getElementById('logout-btn').addEventListener('click', handleLogout);
+  initializeEventListeners();
 
   // Inicializar auto-refresh de tokens
   auth.initTokenRefreshInterceptor();

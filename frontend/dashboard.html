@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages/dashboard.css">
 </head>
 <body>
   <!-- NAVBAR -->
@@ -24,6 +25,7 @@
           <span id="user-name" style="color: var(--text-primary); margin-right: var(--spacing-4); font-weight: var(--font-weight-medium);">
             Cargando...
           </span>
+          <span id="user-role-badge" class="badge badge-role"></span>
           <button class="btn btn-secondary btn-sm" id="logout-btn">
             Cerrar Sesión
           </button>
@@ -32,36 +34,276 @@
     </div>
   </nav>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <div class="container" style="padding-top: var(--spacing-12); padding-bottom: var(--spacing-12);">
-    <h1>Dashboard</h1>
-    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-8);">
-      Bienvenido a SportAcademia. Esta es tu área de control personal.
-    </p>
-
-    <!-- TARJETA DE ESTADO DE AUTENTICACIÓN -->
-    <div class="card" style="margin-bottom: var(--spacing-8);">
-      <div class="card-header">
-        <h3>Estado de Autenticación</h3>
-      </div>
-      <div class="card-body">
-        <p><strong>Email:</strong> <span id="user-email">Cargando...</span></p>
-        <p><strong>Rol:</strong> <span id="user-role" class="badge badge-primary">Cargando...</span></p>
-        <p><strong>Token:</strong> <span style="font-family: monospace; font-size: var(--font-size-sm); color: var(--text-tertiary);">Activo ✓</span></p>
-        <p style="margin-top: var(--spacing-4); color: var(--text-secondary); font-size: var(--font-size-sm);">
-          Este dashboard es un placeholder. Las características específicas por rol serán implementadas en Phase 3.
-        </p>
+  <!-- DASHBOARD ADMIN -->
+  <div id="admin-dashboard" class="dashboard" style="display: none;">
+    <div class="dashboard-header">
+      <div>
+        <h1 class="dashboard-title">Dashboard Administrativo</h1>
+        <p class="dashboard-subtitle">Resumen de tu academia</p>
       </div>
     </div>
 
-    <!-- PRÓXIMAS CARACTERÍSTICAS (por rol) -->
-    <div class="card">
-      <div class="card-header">
-        <h3>Próximas Características</h3>
+    <div class="dashboard-container">
+      <!-- MÉTRICAS -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Estudiantes Activos</div>
+          <div class="metric-value" id="admin-total-students">42</div>
+          <div class="metric-change">↑ 5 este mes</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Cuentas por Cobrar</div>
+          <div class="metric-value" id="admin-accounts-receivable">$2,340</div>
+          <div class="metric-change negative">↑ 3 pagos pendientes</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Ventas Este Mes</div>
+          <div class="metric-value" id="admin-monthly-sales">$1,200</div>
+          <div class="metric-change">↑ 12% vs mes pasado</div>
+        </div>
       </div>
-      <div class="card-body">
-        <div id="features-by-role">
-          <!-- Se llenarán dinámicamente según el rol del usuario -->
+
+      <!-- GRÁFICO DE VENTAS -->
+      <div class="chart-card">
+        <h2 class="chart-title">Ventas por Mes (Año Fiscal)</h2>
+        <div class="chart-placeholder">
+          📊 Gráfico de barras: Ventas mensuales (implementado en Phase 5+)
+        </div>
+      </div>
+
+      <!-- PAGOS PENDIENTES -->
+      <div class="action-list">
+        <div class="action-list-header">
+          <h3>Estudiantes con Pagos Pendientes</h3>
+        </div>
+        <div class="action-list-body">
+          <div class="action-item">
+            <div class="action-item-info">
+              <div class="action-item-name">John Doe</div>
+              <div class="action-item-details">30 días vencido • john@email.com</div>
+            </div>
+            <div class="action-item-amount">$50.00</div>
+            <div class="action-item-actions">
+              <button class="btn btn-sm btn-secondary">Recordatorio</button>
+            </div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-info">
+              <div class="action-item-name">Jane Smith</div>
+              <div class="action-item-details">7 días vencido • jane@email.com</div>
+            </div>
+            <div class="action-item-amount">$100.00</div>
+            <div class="action-item-actions">
+              <button class="btn btn-sm btn-secondary">Recordatorio</button>
+            </div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-info">
+              <div class="action-item-name">Ahmed Hassan</div>
+              <div class="action-item-details">Hoy vence • ahmed@email.com</div>
+            </div>
+            <div class="action-item-amount">$75.00</div>
+            <div class="action-item-actions">
+              <button class="btn btn-sm btn-secondary">Recordatorio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HORAS FACTURABLES DEL PERSONAL -->
+      <div class="action-list">
+        <div class="action-list-header">
+          <h3>Horas Facturables del Personal</h3>
+        </div>
+        <div class="action-list-body">
+          <div class="action-item">
+            <div class="action-item-info">
+              <div class="action-item-name">María García (Instructora)</div>
+              <div class="action-item-details">Karate - Este mes</div>
+            </div>
+            <div class="action-item-amount">20 hrs</div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-info">
+              <div class="action-item-name">Luis Rodríguez (Instructor)</div>
+              <div class="action-item-details">Pilates - Este mes</div>
+            </div>
+            <div class="action-item-amount">18 hrs</div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-info">
+              <div class="action-item-name">Ana López (Recepcionista)</div>
+              <div class="action-item-details">Recepción - Este mes</div>
+            </div>
+            <div class="action-item-amount">40 hrs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD INSTRUCTOR -->
+  <div id="instructor-dashboard" class="dashboard" style="display: none;">
+    <div class="dashboard-header">
+      <div>
+        <h1 class="dashboard-title">Mis Clases</h1>
+        <p class="dashboard-subtitle">Marca asistencia y gestiona tus estudiantes</p>
+      </div>
+    </div>
+
+    <div class="dashboard-container">
+      <!-- CLASES HOY -->
+      <div class="dashboard-section">
+        <h2>Clases Hoy</h2>
+        <div id="instructor-classes-today">
+          <div class="class-widget">
+            <div class="class-widget-time">Lunes, 27 de Abril • 6:00 PM</div>
+            <div class="class-widget-name">Karate Nivel 1</div>
+            <div class="class-widget-actions">
+              <button class="btn btn-primary btn-sm">Marcar Asistencia</button>
+              <button class="btn btn-secondary btn-sm">Ver Detalles</button>
+            </div>
+          </div>
+          <div class="class-widget">
+            <div class="class-widget-time">Lunes, 27 de Abril • 7:30 PM</div>
+            <div class="class-widget-name">Karate Avanzado</div>
+            <div class="class-widget-actions">
+              <button class="btn btn-primary btn-sm">Marcar Asistencia</button>
+              <button class="btn btn-secondary btn-sm">Ver Detalles</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKS RÁPIDOS -->
+      <div class="dashboard-section">
+        <h2>Acciones Rápidas</h2>
+        <div class="quick-links">
+          <a href="#" class="quick-link">
+            <div class="quick-link-icon">✓</div>
+            <div class="quick-link-text">Historial de Asistencia</div>
+          </a>
+          <a href="#" class="quick-link">
+            <div class="quick-link-icon">👥</div>
+            <div class="quick-link-text">Lista de Estudiantes</div>
+          </a>
+          <a href="#" class="quick-link">
+            <div class="quick-link-icon">🔄</div>
+            <div class="quick-link-text">Solicitar Cambio</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD ESTUDIANTE -->
+  <div id="student-dashboard" class="dashboard" style="display: none;">
+    <div class="dashboard-header">
+      <div>
+        <h1 class="dashboard-title">Mi Dashboard</h1>
+        <p class="dashboard-subtitle">Mis clases, membresía y pagos</p>
+      </div>
+    </div>
+
+    <div class="dashboard-container">
+      <!-- MEMBRESÍA -->
+      <div class="membership-card">
+        <h3>Mi Membresía</h3>
+        <div class="membership-status">Plan: Monthly Unlimited</div>
+        <div class="membership-date">Activo hasta: 31 de Mayo, 2026</div>
+        <button class="btn btn-secondary membership-action btn-sm">Gestionar Suscripción</button>
+      </div>
+
+      <!-- MIS CLASES -->
+      <div class="dashboard-section">
+        <h2>Mis Clases</h2>
+        <div class="classes-grid">
+          <div class="card">
+            <div class="card-header">
+              <h4 style="margin: 0;">Karate Nivel 1</h4>
+            </div>
+            <div class="card-body">
+              <p><strong>Instructor:</strong> María García</p>
+              <p><strong>Horario:</strong> Lun, Mié, Vie • 6:00 PM</p>
+              <p><strong>Ubicación:</strong> Sala 1</p>
+              <a href="#" class="btn btn-secondary btn-sm" style="margin-top: var(--spacing-3); width: 100%; text-align: center;">Ver Detalles</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h4 style="margin: 0;">Pilates</h4>
+            </div>
+            <div class="card-body">
+              <p><strong>Instructor:</strong> Luis Rodríguez</p>
+              <p><strong>Horario:</strong> Mar, Jue • 8:00 AM</p>
+              <p><strong>Ubicación:</strong> Sala 2</p>
+              <a href="#" class="btn btn-secondary btn-sm" style="margin-top: var(--spacing-3); width: 100%; text-align: center;">Ver Detalles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLASES DISPONIBLES -->
+      <div class="dashboard-section">
+        <h2>Clases Disponibles</h2>
+        <div class="classes-grid">
+          <div class="card">
+            <div class="card-header">
+              <h4 style="margin: 0;">Yoga</h4>
+            </div>
+            <div class="card-body">
+              <p><strong>Instructor:</strong> Ana López</p>
+              <p><strong>Horario:</strong> Lun, Mié, Vie • 9:00 AM</p>
+              <p><strong>Cupos:</strong> 8/10 disponibles</p>
+              <button class="btn btn-primary btn-sm" style="margin-top: var(--spacing-3); width: 100%;">Inscribirme</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h4 style="margin: 0;">Natación</h4>
+            </div>
+            <div class="card-body">
+              <p><strong>Instructor:</strong> Carlos Sánchez</p>
+              <p><strong>Horario:</strong> Mar, Jue, Sab • 5:00 PM</p>
+              <p><strong>Cupos:</strong> 5/12 disponibles</p>
+              <button class="btn btn-primary btn-sm" style="margin-top: var(--spacing-3); width: 100%;">Inscribirme</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORIAL DE PAGOS -->
+      <div class="dashboard-section">
+        <div class="card">
+          <div class="card-header">
+            <h3>Mi Historial de Pagos</h3>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Concepto</th>
+                  <th>Monto</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2026-04-01</td>
+                  <td>Monthly Unlimited - Abril</td>
+                  <td>$79.00</td>
+                  <td><span class="badge-status active">Pagado</span></td>
+                </tr>
+                <tr>
+                  <td>2026-03-01</td>
+                  <td>Monthly Unlimited - Marzo</td>
+                  <td>$79.00</td>
+                  <td><span class="badge-status active">Pagado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
