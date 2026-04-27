@@ -9,8 +9,8 @@ from contextlib import asynccontextmanager
 from config import settings
 from database import init_db, close_db
 
-# Importar routers (cuando estén creados)
-# from routers import auth, students, classes, payments
+# Importar routers
+from routers import auth, students
 
 
 @asynccontextmanager
@@ -67,9 +67,11 @@ async def root():
     }
 
 
-# Incluir routers (cuando estén creados)
-# app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
-# app.include_router(students.router, prefix="/api/students", tags=["Students"])
+# Incluir routers
+app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
+app.include_router(students.router, prefix="/api/students", tags=["Students"])
+
+# Próximos routers (Phase 5+)
 # app.include_router(classes.router, prefix="/api/classes", tags=["Classes"])
 # app.include_router(payments.router, prefix="/api/payments", tags=["Payments"])
 

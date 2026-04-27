@@ -1,6 +1,5 @@
 """Routers package - API endpoints"""
 
-# Routers will be imported here when created
-# from . import auth, students, classes, payments
+from . import auth, students
 
-__all__ = []
+__all__ = ["auth", "students"]
