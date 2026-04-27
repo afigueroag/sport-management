@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SportAcademia</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+          <span style="font-size: 24px;">🏋️</span>
+          <span>SportAcademia</span>
+        </a>
+
+        <div class="navbar-right">
+          <span id="user-name" style="color: var(--text-primary); margin-right: var(--spacing-4); font-weight: var(--font-weight-medium);">
+            Cargando...
+          </span>
+          <button class="btn btn-secondary btn-sm" id="logout-btn">
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container" style="padding-top: var(--spacing-12); padding-bottom: var(--spacing-12);">
+    <h1>Dashboard</h1>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-8);">
+      Bienvenido a SportAcademia. Esta es tu área de control personal.
+    </p>
+
+    <!-- TARJETA DE ESTADO DE AUTENTICACIÓN -->
+    <div class="card" style="margin-bottom: var(--spacing-8);">
+      <div class="card-header">
+        <h3>Estado de Autenticación</h3>
+      </div>
+      <div class="card-body">
+        <p><strong>Email:</strong> <span id="user-email">Cargando...</span></p>
+        <p><strong>Rol:</strong> <span id="user-role" class="badge badge-primary">Cargando...</span></p>
+        <p><strong>Token:</strong> <span style="font-family: monospace; font-size: var(--font-size-sm); color: var(--text-tertiary);">Activo ✓</span></p>
+        <p style="margin-top: var(--spacing-4); color: var(--text-secondary); font-size: var(--font-size-sm);">
+          Este dashboard es un placeholder. Las características específicas por rol serán implementadas en Phase 3.
+        </p>
+      </div>
+    </div>
+
+    <!-- PRÓXIMAS CARACTERÍSTICAS (por rol) -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Próximas Características</h3>
+      </div>
+      <div class="card-body">
+        <div id="features-by-role">
+          <!-- Se llenarán dinámicamente según el rol del usuario -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/pages/dashboard.js"></script>
+</body>
+</html>

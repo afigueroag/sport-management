@@ -19,34 +19,60 @@
         <p>Iniciar Sesión</p>
       </div>
 
-      <form class="auth-form">
+      <!-- Alertas (se muestran dinámicamente) -->
+      <div id="alert-container"></div>
+
+      <form id="login-form" class="auth-form">
         <div class="input-group">
           <label class="input-label required">Email</label>
-          <input type="email" class="input" placeholder="tu@email.com" required>
+          <input
+            id="email"
+            type="email"
+            class="input"
+            placeholder="tu@email.com"
+            required
+            autocomplete="email"
+          >
+          <div class="input-error" id="email-error"></div>
         </div>
 
         <div class="input-group">
           <label class="input-label required">Contraseña</label>
-          <input type="password" class="input" placeholder="••••••••" required>
+          <input
+            id="password"
+            type="password"
+            class="input"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+          <div class="input-error" id="password-error"></div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+        <div class="checkbox">
+          <input type="checkbox" id="remember-me" name="remember-me">
+          <label for="remember-me">Recuérdame</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+          Iniciar Sesión
+        </button>
 
         <div class="auth-divider">O</div>
 
-        <button type="button" class="btn btn-secondary btn-block">Continuar con Google</button>
+        <button type="button" class="btn btn-secondary btn-block" id="google-btn">
+          Continuar con Google
+        </button>
       </form>
 
       <div class="auth-footer">
         <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
-        <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+        <p><a href="forgot-password.html">¿Olvidaste tu contraseña?</a></p>
       </div>
     </div>
   </div>
 
-  <script>
-    // Placeholder - Implementar en Phase 2
-    console.log('Login page - Phase 2 implementation');
-  </script>
+  <!-- Scripts -->
+  <script type="module" src="js/pages/login.js"></script>
 </body>
 </html>

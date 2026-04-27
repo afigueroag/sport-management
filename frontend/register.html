@@ -19,37 +19,81 @@
         <p>Crear Cuenta</p>
       </div>
 
-      <form class="auth-form">
+      <!-- Alertas (se muestran dinámicamente) -->
+      <div id="alert-container"></div>
+
+      <form id="register-form" class="auth-form">
         <div class="input-group">
           <label class="input-label required">Nombre Completo</label>
-          <input type="text" class="input" placeholder="Tu nombre" required>
+          <input
+            id="full-name"
+            type="text"
+            class="input"
+            placeholder="Tu nombre completo"
+            required
+            autocomplete="name"
+          >
+          <div class="input-error" id="full-name-error"></div>
         </div>
 
         <div class="input-group">
           <label class="input-label required">Email</label>
-          <input type="email" class="input" placeholder="tu@email.com" required>
+          <input
+            id="email"
+            type="email"
+            class="input"
+            placeholder="tu@email.com"
+            required
+            autocomplete="email"
+          >
+          <div class="input-error" id="email-error"></div>
+          <div class="input-hint" id="email-hint">Usarás esto para iniciar sesión</div>
         </div>
 
         <div class="input-group">
           <label class="input-label required">Contraseña</label>
-          <input type="password" class="input" placeholder="••••••••" required>
+          <input
+            id="password"
+            type="password"
+            class="input"
+            placeholder="Mínimo 8 caracteres"
+            required
+            autocomplete="new-password"
+          >
+          <div class="input-error" id="password-error"></div>
+          <div class="input-hint" id="password-hint">Debe incluir letras y números</div>
         </div>
 
         <div class="input-group">
           <label class="input-label required">Confirmar Contraseña</label>
-          <input type="password" class="input" placeholder="••••••••" required>
+          <input
+            id="password-confirm"
+            type="password"
+            class="input"
+            placeholder="Repite tu contraseña"
+            required
+            autocomplete="new-password"
+          >
+          <div class="input-error" id="password-confirm-error"></div>
         </div>
 
         <div class="checkbox">
           <input type="checkbox" id="terms" required>
-          <label for="terms">Acepto los <a href="#">términos y condiciones</a></label>
+          <label for="terms">
+            Acepto los <a href="#" target="_blank">términos y condiciones</a>
+          </label>
+          <div class="input-error" id="terms-error"></div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block" style="margin-top: var(--spacing-6);">Crear Cuenta</button>
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn" style="margin-top: var(--spacing-6);">
+          Crear Cuenta
+        </button>
 
         <div class="auth-divider">O</div>
 
-        <button type="button" class="btn btn-secondary btn-block">Registrarse con Google</button>
+        <button type="button" class="btn btn-secondary btn-block" id="google-btn">
+          Registrarse con Google
+        </button>
       </form>
 
       <div class="auth-footer">
@@ -58,9 +102,7 @@
     </div>
   </div>
 
-  <script>
-    // Placeholder - Implementar en Phase 2
-    console.log('Register page - Phase 2 implementation');
-  </script>
+  <!-- Scripts -->
+  <script type="module" src="js/pages/register.js"></script>
 </body>
 </html>
