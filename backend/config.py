@@ -2,8 +2,15 @@
 Configuración de la aplicación usando Pydantic Settings
 """
 
+import os
+from pathlib import Path
 from pydantic_settings import BaseSettings
 from typing import List
+from dotenv import load_dotenv
+
+# Load .env file explicitly
+env_path = Path(__file__).parent / ".env"
+load_dotenv(env_path)
 
 
 class Settings(BaseSettings):
@@ -42,10 +49,9 @@ class Settings(BaseSettings):
     stripe_webhook_secret: str = ""
 
     class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
         case_sensitive = False
 
 
 # Crear instancia global de settings
 settings = Settings()
+

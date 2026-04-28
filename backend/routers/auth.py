@@ -2,7 +2,7 @@
 Auth Router - Autenticación y autorización
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..database import get_db
@@ -152,7 +152,7 @@ async def refresh(
 
 
 async def get_current_user(
-    authorization: str = None, db: AsyncSession = Depends(get_db)
+    authorization: str = Header(None), db: AsyncSession = Depends(get_db)
 ) -> User:
     """Dependency para obtener el usuario actual del token JWT"""
     if not authorization:
@@ -203,7 +203,7 @@ async def get_current_user(
 
 @router.get("/me", response_model=UserResponse)
 async def get_me(
-    authorization: str = None, db: AsyncSession = Depends(get_db)
+    authorization: str = Header(None), db: AsyncSession = Depends(get_db)
 ):
     """
     Obtiene la información del usuario actual
