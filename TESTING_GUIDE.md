@@ -8,11 +8,14 @@ Complete manual for testing all features of the SportAcademia application.
 
 ### 1.1 Start PostgreSQL Service
 
-First, check if PostgreSQL is running:
+First, check if PostgreSQL is running. Your PostgreSQL version may vary (16, 17, 18, etc.):
 
 ```cmd
-sc query postgresql-x64-16
+sc query postgresql-x64-18
 ```
+
+> **Note:** Replace `postgresql-x64-18` with your actual PostgreSQL version if different.
+> If you get "service does not exist", see **Appendix A** to find your correct service name.
 
 **If you see `STATE : 4 RUNNING`:**
 ✅ PostgreSQL is already running - skip to 1.2
@@ -21,7 +24,7 @@ sc query postgresql-x64-16
 ❌ PostgreSQL is stopped - start it:
 
 ```cmd
-net start postgresql-x64-16
+net start postgresql-x64-18
 ```
 
 You should see:
@@ -893,3 +896,62 @@ You've tested SportAcademia comprehensively. Ready to:
 - [ ] Integrate real Stripe keys
 - [ ] Setup email notifications
 - [ ] Add more features
+
+---
+
+## Appendix A: PostgreSQL Service Name Variations
+
+If `sc query postgresql-x64-16` doesn't work, your PostgreSQL version might be different.
+
+### Find Your PostgreSQL Service Name
+
+Run this to see all installed PostgreSQL services:
+
+```cmd
+sc query | findstr /i postgresql
+```
+
+Common PostgreSQL service names:
+- `postgresql-x64-18` (PostgreSQL 18)
+- `postgresql-x64-17` (PostgreSQL 17)
+- `postgresql-x64-16` (PostgreSQL 16)
+- `postgresql-x64-15` (PostgreSQL 15)
+- `postgresql` (if installed differently)
+
+### Use Your Actual Service Name
+
+Once you find your service name, use it in all commands:
+
+```cmd
+REM Check status
+sc query postgresql-x64-18
+
+REM Start service
+net start postgresql-x64-18
+
+REM Stop service
+net stop postgresql-x64-18
+```
+
+### Example Output (Running)
+
+If PostgreSQL is running, you'll see:
+
+```
+SERVICE_NAME: postgresql-x64-18
+        TYPE               : 10  WIN32_OWN_PROCESS
+        STATE              : 4  RUNNING
+                                (STOPPABLE, PAUSABLE, ACCEPTS_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+```
+
+### Fallback: Always Test Connection
+
+If you can't find the service name, just test the connection:
+
+```cmd
+psql -U postgres -h localhost -d sport_academy
+```
+
+If you can connect with password `Laredo35`, PostgreSQL is running regardless of service name! ✅
