@@ -152,13 +152,24 @@ async def refresh(
 
 
 async def get_current_user(
-    token: str = None, db: AsyncSession = Depends(get_db)
+    authorization: str = None, db: AsyncSession = Depends(get_db)
 ) -> User:
     """Dependency para obtener el usuario actual del token JWT"""
-    if not token:
+    if not authorization:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token no proporcionado",
+        )
+
+    # Extraer token del header "Bearer <token>"
+    try:
+        scheme, token = authorization.split()
+        if scheme.lower() != "bearer":
+            raise ValueError()
+    except (ValueError, AttributeError):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Formato de autorización inválido",
         )
 
     # Decodificar token
