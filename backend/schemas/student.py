@@ -4,7 +4,7 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from datetime import datetime, date
 
-from schemas.user import UserResponse
+from ..schemas.user import UserResponse
 
 
 class StudentCreate(BaseModel):

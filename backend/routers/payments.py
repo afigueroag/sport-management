@@ -9,21 +9,21 @@ from datetime import datetime
 import stripe
 import uuid
 
-from config import settings
-from database import get_db
-from models.student import Student
-from models.user import User
-from models.membership import Membership
-from models.subscription import Subscription, SubscriptionStatus
-from models.payment import Payment, PaymentStatus, PaymentMethod
-from schemas.payment_schema import (
+from ..config import settings
+from ..database import get_db
+from ..models.student import Student
+from ..models.user import User
+from ..models.membership import Membership
+from ..models.subscription import Subscription, SubscriptionStatus
+from ..models.payment import Payment, PaymentStatus, PaymentMethod
+from ..schemas.payment_schema import (
     CheckoutSessionRequest,
     CheckoutSessionResponse,
     PaymentResponse,
     SubscriptionResponse,
     CustomerPortalRequest,
 )
-from routers.auth import get_current_user
+from .auth import get_current_user
 
 # Configurar API key de Stripe
 stripe.api_key = settings.stripe_secret_key

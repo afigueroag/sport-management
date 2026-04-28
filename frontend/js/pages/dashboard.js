@@ -3,6 +3,7 @@
    ============================================ */
 
 import * as auth from '../auth.js';
+import * as api from '../api.js';
 
 /**
  * Formatea el nombre del rol
@@ -109,13 +110,21 @@ async function loadRoleSpecificData(role) {
  */
 async function loadAdminData() {
   try {
-    // TODO: En Phase 5, conectar con API para traer datos reales
-    // Por ahora, usamos datos mock
+    const data = await api.dashboard.adminSummary();
 
-    // Los datos ya están en el HTML como placeholders
-    console.log('✓ Admin data loaded (mock)');
+    // Actualizar métricas
+    document.getElementById('admin-total-students').textContent = data.total_active_students || 0;
+    document.getElementById('admin-monthly-sales').textContent = `$${(data.monthly_revenue || 0).toFixed(2)}`;
+
+    // Cuentas por cobrar = suscripciones activas (as approximation)
+    document.getElementById('admin-accounts-receivable').textContent =
+      `${data.total_subscriptions || 0} activas`;
+
+    console.log('✓ Admin data loaded:', data);
   } catch (error) {
     console.error('Error loading admin data:', error);
+    document.getElementById('admin-total-students').textContent = '—';
+    document.getElementById('admin-monthly-sales').textContent = '$—';
   }
 }
 
@@ -124,13 +133,21 @@ async function loadAdminData() {
  */
 async function loadInstructorData() {
   try {
-    // TODO: En Phase 5, conectar con API para traer:
-    // - Clases asignadas para hoy
-    // - Horario del instructor
-    // - Estudiantes por clase
+    const data = await api.dashboard.instructorSummary();
 
-    // Por ahora, usamos datos mock en el HTML
-    console.log('✓ Instructor data loaded (mock)');
+    // Mostrar clases del instructor (placeholder - full implementation needed with class sessions)
+    const classesToday = data.total_classes || 0;
+
+    if (classesToday === 0) {
+      document.getElementById('instructor-classes-today').innerHTML =
+        '<p style="color: var(--text-secondary); padding: var(--spacing-3);">No tienes clases programadas para hoy.</p>';
+    } else {
+      // In a full implementation, we would fetch and display actual class sessions
+      document.getElementById('instructor-classes-today').innerHTML =
+        `<p style="color: var(--text-secondary); padding: var(--spacing-3);">Tienes ${classesToday} clase(s) asignada(s).</p>`;
+    }
+
+    console.log('✓ Instructor data loaded:', data);
   } catch (error) {
     console.error('Error loading instructor data:', error);
   }
@@ -141,14 +158,27 @@ async function loadInstructorData() {
  */
 async function loadStudentData() {
   try {
-    // TODO: En Phase 5, conectar con API para traer:
-    // - Membresía actual del estudiante
-    // - Clases inscritas
-    // - Clases disponibles
-    // - Historial de pagos
+    const data = await api.dashboard.studentSummary();
 
-    // Por ahora, usamos datos mock en el HTML
-    console.log('✓ Student data loaded (mock)');
+    // Mostrar información de membresía
+    const subscriptionStatus = data.has_active_subscription ? 'Activa' : 'Sin membresía activa';
+    const membershipCard = document.querySelector('.membership-status');
+    if (membershipCard) {
+      membershipCard.textContent = `Plan: ${data.subscription_type || 'N/A'} — ${subscriptionStatus}`;
+    }
+
+    // Mostrar clases inscritas
+    const enrolledCount = data.enrolled_classes_count || 0;
+    const enrollmentInfo = document.querySelector('.membership-date');
+    if (enrollmentInfo) {
+      enrollmentInfo.textContent = `Inscrito en ${enrolledCount} clase(s)`;
+    }
+
+    // Mostrar tasa de asistencia
+    const attendanceRate = data.attendance_rate || 0;
+    console.log(`Attendance rate: ${attendanceRate}%`);
+
+    console.log('✓ Student data loaded:', data);
   } catch (error) {
     console.error('Error loading student data:', error);
   }

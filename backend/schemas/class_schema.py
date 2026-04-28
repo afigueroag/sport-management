@@ -3,7 +3,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime, time
 from typing import Optional
-from models.class_model import DayOfWeek
+from ..models.class_model import DayOfWeek
 
 
 class ClassCreate(BaseModel):

@@ -3,7 +3,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
-from models.attendance import AttendanceStatus
+from ..models.attendance import AttendanceStatus
 
 
 class AttendanceCreate(BaseModel):

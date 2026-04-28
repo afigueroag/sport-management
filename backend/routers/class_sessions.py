@@ -8,11 +8,11 @@ from sqlalchemy.future import select
 from datetime import datetime
 import uuid
 
-from database import get_db
-from models.class_model import Class, ClassSession
-from models.user import User
-from schemas.class_session_schema import ClassSessionCreate, ClassSessionResponse, ClassSessionUpdate
-from routers.auth import get_current_user
+from ..database import get_db
+from ..models.class_model import Class, ClassSession
+from ..models.user import User
+from ..schemas.class_session_schema import ClassSessionCreate, ClassSessionResponse, ClassSessionUpdate
+from .auth import get_current_user
 
 router = APIRouter(tags=["Class Sessions"])
 

@@ -4,7 +4,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Enum
 from datetime import datetime
 import enum
 
-from database import Base
+from ..database import Base
 
 
 class PaymentStatus(str, enum.Enum):

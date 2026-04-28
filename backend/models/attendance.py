@@ -4,7 +4,7 @@ from sqlalchemy import Column, String, ForeignKey, DateTime, Enum, Text
 from datetime import datetime
 import enum
 
-from database import Base
+from ..database import Base
 
 
 class AttendanceStatus(str, enum.Enum):

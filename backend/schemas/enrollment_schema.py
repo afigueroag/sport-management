@@ -3,7 +3,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
-from models.enrollment import EnrollmentStatus
+from ..models.enrollment import EnrollmentStatus
 
 
 class EnrollmentCreate(BaseModel):

@@ -5,10 +5,10 @@ from sqlalchemy.future import select
 from sqlalchemy.exc import IntegrityError
 import uuid
 
-from models.user import User, UserRole
-from models.student import Student
-from schemas.user import UserCreate
-from utils.security import hash_password
+from ..models.user import User, UserRole
+from ..models.student import Student
+from ..schemas.user import UserCreate
+from ..utils.security import hash_password
 
 
 async def create_user(db: AsyncSession, user_data: UserCreate, role: UserRole = UserRole.STUDENT):

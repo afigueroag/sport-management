@@ -9,13 +9,13 @@ from sqlalchemy import and_
 from datetime import datetime
 import uuid
 
-from database import get_db
-from models.attendance import Attendance, AttendanceStatus
-from models.class_model import ClassSession, Class
-from models.student import Student
-from models.user import User
-from schemas.attendance_schema import AttendanceCreate, AttendanceResponse, AttendanceUpdate
-from routers.auth import get_current_user
+from ..database import get_db
+from ..models.attendance import Attendance, AttendanceStatus
+from ..models.class_model import ClassSession, Class
+from ..models.student import Student
+from ..models.user import User
+from ..schemas.attendance_schema import AttendanceCreate, AttendanceResponse, AttendanceUpdate
+from .auth import get_current_user
 
 router = APIRouter(tags=["Attendance"])
 

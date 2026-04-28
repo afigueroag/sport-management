@@ -3,8 +3,8 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
-from models.payment import PaymentStatus, PaymentMethod
-from models.subscription import SubscriptionStatus
+from ..models.payment import PaymentStatus, PaymentMethod
+from ..models.subscription import SubscriptionStatus
 
 
 class CheckoutSessionRequest(BaseModel):

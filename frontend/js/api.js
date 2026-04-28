@@ -177,6 +177,37 @@ export const reports = {
   students: (params) => get('/reports/students', { search: params }),
 };
 
+/**
+ * Endpoints de dashboard
+ */
+export const dashboard = {
+  adminSummary: () => get('/dashboard/admin/summary'),
+  instructorSummary: () => get('/dashboard/instructor/summary'),
+  studentSummary: () => get('/dashboard/student/summary'),
+};
+
+/**
+ * Endpoints de class sessions
+ */
+export const classSessions = {
+  list: (classId) => get(`/class-sessions?class_id=${classId}`),
+  get: (id) => get(`/class-sessions/${id}`),
+  create: (data) => post('/class-sessions', data),
+  update: (id, data) => put(`/class-sessions/${id}`, data),
+  delete: (id) => remove(`/class-sessions/${id}`),
+};
+
+/**
+ * Endpoints de inscripciones
+ */
+export const enrollments = {
+  list: (params) => get('/enrollments', { search: params }),
+  get: (id) => get(`/enrollments/${id}`),
+  create: (data) => post('/enrollments', data),
+  update: (id, data) => put(`/enrollments/${id}`, data),
+  delete: (id) => remove(`/enrollments/${id}`),
+};
+
 export default {
   get,
   post,
@@ -186,7 +217,10 @@ export default {
   auth,
   students,
   classes,
+  classSessions,
+  enrollments,
   attendance,
   payments,
   reports,
+  dashboard,
 };

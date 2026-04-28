@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 from datetime import datetime
 import enum
 
-from database import Base
+from ..database import Base
 
 
 class UserRole(str, enum.Enum):

@@ -7,11 +7,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 import uuid
 
-from database import get_db
-from models.class_model import Class
-from models.user import User
-from schemas.class_schema import ClassCreate, ClassResponse, ClassUpdate
-from routers.auth import get_current_user
+from ..database import get_db
+from ..models.class_model import Class
+from ..models.user import User
+from ..schemas.class_schema import ClassCreate, ClassResponse, ClassUpdate
+from .auth import get_current_user
 
 router = APIRouter(tags=["Classes"])
 

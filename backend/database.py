@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.pool import NullPool
 
-from config import settings
+from .config import settings
 
 # Crear engine asincrónico
 engine = create_async_engine(

@@ -3,7 +3,7 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime
 from datetime import datetime
 
-from database import Base
+from ..database import Base
 
 
 class Membership(Base):

@@ -13,7 +13,7 @@ from sqlalchemy import (
 from datetime import datetime, time
 import enum
 
-from database import Base
+from ..database import Base
 
 
 class DayOfWeek(str, enum.Enum):

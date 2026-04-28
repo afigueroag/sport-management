@@ -6,14 +6,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
-from config import settings
-from database import init_db, close_db
+from .config import settings
+from .database import init_db, close_db
 
 # Importar modelos para registrar con Base
-import models
+from . import models
 
 # Importar routers
-from routers import auth, students, classes, enrollments, attendance, class_sessions, dashboard, payments
+from .routers import auth, students, classes, enrollments, attendance, class_sessions, dashboard, payments
 
 
 @asynccontextmanager

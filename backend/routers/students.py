@@ -7,11 +7,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 import uuid
 
-from database import get_db
-from models.student import Student
-from models.user import User
-from schemas.student import StudentCreate, StudentResponse, StudentUpdate
-from routers.auth import get_current_user
+from ..database import get_db
+from ..models.student import Student
+from ..models.user import User
+from ..schemas.student import StudentCreate, StudentResponse, StudentUpdate
+from .auth import get_current_user
 
 router = APIRouter(tags=["Students"])
 

@@ -1,7 +1,7 @@
 """Schemas para Autenticación"""
 
 from pydantic import BaseModel
-from schemas.user import UserResponse
+from ..schemas.user import UserResponse
 
 
 class TokenResponse(BaseModel):

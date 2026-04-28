@@ -5,16 +5,16 @@ Auth Router - Autenticación y autorización
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_db
-from schemas.user import UserCreate, UserLogin, UserResponse
-from schemas.auth import TokenResponse, RefreshTokenRequest
-from services.user_service import (
+from ..database import get_db
+from ..schemas.user import UserCreate, UserLogin, UserResponse
+from ..schemas.auth import TokenResponse, RefreshTokenRequest
+from ..services.user_service import (
     create_student,
     get_user_by_email,
     get_active_user,
     user_exists,
 )
-from utils.security import (
+from ..utils.security import (
     hash_password,
     verify_password,
     create_access_token,
@@ -22,7 +22,7 @@ from utils.security import (
     decode_token,
     get_user_id_from_token,
 )
-from models.user import User
+from ..models.user import User
 
 router = APIRouter(tags=["Authentication"])
 

@@ -10,13 +10,13 @@ from sqlalchemy import and_
 from datetime import datetime
 import uuid
 
-from database import get_db
-from models.enrollment import Enrollment, EnrollmentStatus
-from models.class_model import Class
-from models.student import Student
-from models.user import User
-from schemas.enrollment_schema import EnrollmentCreate, EnrollmentResponse, EnrollmentUpdate
-from routers.auth import get_current_user
+from ..database import get_db
+from ..models.enrollment import Enrollment, EnrollmentStatus
+from ..models.class_model import Class
+from ..models.student import Student
+from ..models.user import User
+from ..schemas.enrollment_schema import EnrollmentCreate, EnrollmentResponse, EnrollmentUpdate
+from .auth import get_current_user
 
 router = APIRouter(tags=["Enrollments"])
 
