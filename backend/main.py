@@ -9,22 +9,25 @@ from contextlib import asynccontextmanager
 from config import settings
 from database import init_db, close_db
 
+# Importar modelos para registrar con Base
+import models
+
 # Importar routers
-from routers import auth, students, classes, enrollments, attendance, class_sessions, dashboard
+from routers import auth, students, classes, enrollments, attendance, class_sessions, dashboard, payments
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifecycle events para la aplicación"""
     # Startup
-    print("🚀 SportAcademia API starting...")
+    print("[*] SportAcademia API starting...")
     await init_db()
-    print("✓ Database initialized")
+    print("[+] Database initialized")
     yield
     # Shutdown
-    print("🛑 SportAcademia API shutting down...")
+    print("[-] SportAcademia API shutting down...")
     await close_db()
-    print("✓ Database closed")
+    print("[+] Database closed")
 
 
 # Crear aplicación FastAPI
@@ -86,8 +89,8 @@ app.include_router(class_sessions.router, prefix="/api/class-sessions", tags=["C
 # Incluir router de dashboard
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])
 
-# Próximos routers (Phase 5+)
-# app.include_router(payments.router, prefix="/api/payments", tags=["Payments"])
+# Incluir router de pagos
+app.include_router(payments.router, prefix="/api/payments", tags=["Payments"])
 
 
 if __name__ == "__main__":

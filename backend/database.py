@@ -17,9 +17,6 @@ engine = create_async_engine(
     settings.database_url,
     echo=settings.debug,  # Log todas las queries en desarrollo
     future=True,
-    pool_pre_ping=True,  # Verificar conexión antes de usar
-    pool_size=20,
-    max_overflow=0,
     poolclass=NullPool,  # Usar NullPool para mejor manejo en async
 )
 

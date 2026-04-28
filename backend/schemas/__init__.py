@@ -7,6 +7,7 @@ from .class_schema import ClassCreate, ClassResponse, ClassUpdate
 from .enrollment_schema import EnrollmentCreate, EnrollmentResponse, EnrollmentUpdate
 from .attendance_schema import AttendanceCreate, AttendanceResponse, AttendanceUpdate
 from .class_session_schema import ClassSessionCreate, ClassSessionResponse, ClassSessionUpdate
+from .payment_schema import CheckoutSessionRequest, CheckoutSessionResponse, PaymentResponse, SubscriptionResponse, CustomerPortalRequest
 
 __all__ = [
     "UserCreate",
@@ -30,4 +31,9 @@ __all__ = [
     "ClassSessionCreate",
     "ClassSessionResponse",
     "ClassSessionUpdate",
+    "CheckoutSessionRequest",
+    "CheckoutSessionResponse",
+    "PaymentResponse",
+    "SubscriptionResponse",
+    "CustomerPortalRequest",
 ]
