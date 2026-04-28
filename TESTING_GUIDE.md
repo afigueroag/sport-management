@@ -6,15 +6,63 @@ Complete manual for testing all features of the SportAcademia application.
 
 ## Part 1: Setup & Prerequisites
 
-### 1.1 Verify PostgreSQL is Running
+### 1.1 Start PostgreSQL Service
+
+First, check if PostgreSQL is running:
+
+```cmd
+sc query postgresql-x64-16
+```
+
+**If you see `STATE : 4 RUNNING`:**
+✅ PostgreSQL is already running - skip to 1.2
+
+**If you see `STATE : 1 STOPPED`:**
+❌ PostgreSQL is stopped - start it:
+
+```cmd
+net start postgresql-x64-16
+```
+
+You should see:
+```
+The postgresql-x64-16 service is starting.
+The postgresql-x64-16 service has been successfully started.
+```
+
+### 1.2 Verify PostgreSQL Connection
+
+Open a **new Command Prompt** and connect to the database:
 
 ```cmd
 psql -U postgres -h localhost -d sport_academy
 ```
 
-Enter password: `Laredo35`
+When prompted for password, enter: `Laredo35`
 
-You should see the PostgreSQL prompt `sport_academy=#`. Type `\q` to exit.
+**Expected output:**
+```
+psql (16.x)
+Type "help" for help.
+
+sport_academy=#
+```
+
+✅ If you see `sport_academy=#` prompt, PostgreSQL is working correctly!
+
+Type `\q` to exit:
+
+```cmd
+\q
+```
+
+**Troubleshooting:**
+- **"psql: command not found"** → PostgreSQL not in PATH
+  - Try: `"C:\Program Files\PostgreSQL\16\bin\psql.exe" -U postgres -h localhost -d sport_academy`
+- **"password authentication failed"** → Wrong password
+  - Make sure you entered `Laredo35` (case-sensitive)
+- **"could not translate host name"** → Connection issue
+  - Verify PostgreSQL service is running: `net start postgresql-x64-16`
 
 ### 1.2 Start the Backend Server
 
@@ -32,7 +80,34 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000
 ```
 
-### 1.3 Create Test Users (All Roles)
+### 1.3 Quick Startup Checklist
+
+Before you start testing, verify everything is ready:
+
+```cmd
+REM Check PostgreSQL is running
+sc query postgresql-x64-16
+
+REM Check you can connect to database
+psql -U postgres -h localhost -d sport_academy
+REM (type \q to exit)
+
+REM Check backend server starts
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+REM (should show "Application startup complete")
+
+REM Check API is responding (in new Command Prompt)
+curl http://127.0.0.1:8000/health
+REM (should return JSON with "healthy" status)
+
+REM Check frontend loads (open in browser)
+http://127.0.0.1:8000/index.html
+REM (should show landing page)
+```
+
+If all these succeed ✅, you're ready to test!
+
+### 1.4 Create Test Users (All Roles)
 
 Open a new Command Prompt window and run:
 
